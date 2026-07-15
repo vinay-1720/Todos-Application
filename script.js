@@ -1,4 +1,6 @@
 let todoItemsContainer = document.getElementById("todoItemsContainer");
+let addtodobutton=document.getElementById("addtodobutton");
+
 let todoList = [
   {
     text: "Learn HTML",
@@ -13,6 +15,23 @@ let todoList = [
     uniqueNo:3
   }
 ];
+
+function onaddtodo(){
+    let todocount=todoList.length;
+    let userinput=document.getElementById("todoUserInput");
+    let uservalue=userinput.value;
+    todocount=todocount+1;
+    let newtodo={
+        text:uservalue,
+        uniqueNo:todocount
+    }
+    createAndAppendTodo(newtodo);
+    uservalue.value="";
+}
+
+addtodobutton.onclick=function(){
+    onaddtodo();
+}
 
 function createAndAppendTodo(todo) {
     let checkboxId="checkbox"+todo.uniqueNo;
@@ -77,4 +96,21 @@ function ontodoStatusChange(checkboxId,labelId){
 function onDeletetodo(todoId){
     let todoElement=document.getElementById(todoId);
     todoItemsContainer.removeChild(todoElement);
+}
+function onaddtodo(){
+    let todocount=todoList.length;
+    let userinput=document.getElementById("todoUserInput");
+    let uservalue=userinput.value;
+    if (uservalue===""){
+        alert("Please enter valid text");
+        return;
+    }
+    todocount=todocount+1;
+    let newtodo={
+        text:uservalue,
+        uniqueNo:todocount
+    }
+    todoList.push(newtodo);
+    createAndAppendTodo(newtodo);
+    userinput.value="";
 }
